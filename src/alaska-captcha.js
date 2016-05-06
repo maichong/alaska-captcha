@@ -30,8 +30,9 @@ export default class CaptchaService extends alaska.Service {
       throw new Error('CaptchaService middleware \'toPath\' error');
     }
     return async function (ctx, next) {
-      let to = ctx.state[toPath] || ctx.request.body[toPath];
-      let code = ctx.state._captcha || ctx.request.body._captcha;
+      let body = ctx.state.body || ctx.request.body;
+      let to = body[toPath] || ctx.request.body[toPath];
+      let code = body._captcha || ctx.request.body._captcha;
       let service = ctx.service.alaska.service('alaska-captcha');
       if (!to || !code) {
         service.error('Invalid captcha');
