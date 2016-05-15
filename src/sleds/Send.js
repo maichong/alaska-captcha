@@ -60,7 +60,7 @@ export default class Send extends service.Sled {
     } else if (EMAIL && captcha.type === 'email' && captcha.email) {
       await EMAIL.run('Send', {
         to,
-        sms: captcha.sms,
+        email: captcha.email,
         locale,
         values
       });
