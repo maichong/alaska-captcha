@@ -4,9 +4,11 @@
  * @author Liang <liang@maichong.it>
  */
 
+import alaska from 'alaska';
+import service from '../';
 const CACHE = service.cache;
 
-export default class Verify extends service.Sled {
+export default class Verify extends alaska.Sled {
   /**
    * 验证
    * @param data

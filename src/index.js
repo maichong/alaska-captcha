@@ -6,7 +6,7 @@
 
 import alaska from 'alaska';
 
-export default class CaptchaService extends alaska.Service {
+class CaptchaService extends alaska.Service {
   constructor(options, alaska) {
     options = options || {};
     options.id = options.id || 'alaska-captcha';
@@ -29,11 +29,11 @@ export default class CaptchaService extends alaska.Service {
     if (!toPath || typeof toPath !== 'string') {
       throw new Error('CaptchaService middleware \'toPath\' error');
     }
+    let service = this;
     return async function (ctx, next) {
       let body = ctx.state.body || ctx.request.body;
       let to = body[toPath] || ctx.request.body[toPath];
       let code = body._captcha || ctx.request.body._captcha;
-      let service = ctx.service.alaska.service('alaska-captcha');
       if (!to || !code) {
         service.error('Invalid captcha');
       }
@@ -45,3 +45,5 @@ export default class CaptchaService extends alaska.Service {
     };
   }
 }
+
+export default new CaptchaService();

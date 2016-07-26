@@ -4,6 +4,9 @@
  * @author Liang <liang@maichong.it>
  */
 
+import alaska from 'alaska';
+import service from '../';
+
 const SMS = alaska.service('alaska-sms', true);
 const EMAIL = alaska.service('alaska-email', true);
 
@@ -37,9 +40,10 @@ if (EMAIL) {
   };
 }
 
-export default class Captcha extends service.Model {
+export default class Captcha extends alaska.Model {
 
   static label = 'Captcha';
+  static icon = 'lock';
   static title = 'title';
   static defaultColumns = '_id title type length sms email';
   static defaultSort = '_id';

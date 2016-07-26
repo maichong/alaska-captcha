@@ -5,17 +5,16 @@
  */
 
 import random from 'string-random';
-
+import alaska from 'alaska';
+import service from '../';
 import Captcha from '../models/Captcha';
 
 const SMS = alaska.service('alaska-sms', true);
 const EMAIL = alaska.service('alaska-email', true);
-
 const locales = service.config('locales');
-
 const CACHE = service.cache;
 
-export default class Send extends service.Sled {
+export default class Send extends alaska.Sled {
   /**
    * 发送验证码
    * @param data
