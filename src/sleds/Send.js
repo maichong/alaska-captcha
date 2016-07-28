@@ -47,7 +47,7 @@ export default class Send extends alaska.Sled {
     }
 
     let cacheKey = 'captcha_' + to;
-    CACHE.set(cacheKey, code, captcha.lifetime || 1800);
+    CACHE.set(cacheKey, code, captcha.lifetime * 1000 || 1800 * 1000);
 
     if (SMS && captcha.type === 'sms' && captcha.sms) {
       await SMS.run('Send', {
